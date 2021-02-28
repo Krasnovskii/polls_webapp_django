@@ -1,0 +1,18 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% for question in question_list %}
+    <li>
+        <p>{{ question.question_text }}</p>
+        {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    </li>
+    {% endfor %}
+{% else %}
+<p>If you would like to see statistics, please login </p>
+{% endif %}
+
+
+{% endblock content %}

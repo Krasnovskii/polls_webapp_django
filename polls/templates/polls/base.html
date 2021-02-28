@@ -1,0 +1,31 @@
+
+<!doctype html>
+<html lang="en">
+{% load bootstrap5 %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Polls</title>
+
+</head>
+<a href="/">Home</a>
+<a href="/statistic/">Statistic</a>
+
+{% if user.is_authenticated %}
+    Hello, {{ user.username }}
+<a href="{% url 'users:logout' %}">Log out</a>
+{% else %}
+<a href="{% url 'users:register' %}">Register</a>
+<a href="{% url 'users:login' %}">Log in</a>
+{% endif %}
+
+
+<body>
+<div>
+    {% block content %}{% endblock content %}
+</div>
+
+
+</body>
+</html>

@@ -1,12 +1,24 @@
+{% extends "polls/base.html" %}
+{% load static %}
 
-{% if latest_question_list %}
-    <ul>
-        {% for question in latest_question_list %}
-        <li>
-            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+{% if user.is_authenticated %}
+
+    {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+            <li>
+                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are avalible</p>
+    {% endif%}
 {% else %}
-    <p>No polls are avalible</p>
+<p>If you would like voite on the questions, you will need log in or register</p>
 {% endif%}
+{% endblock content%}
