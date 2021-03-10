@@ -1,6 +1,15 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    def __str__(self):
+           return self.user.username
+
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=250)
@@ -27,3 +36,10 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
 
+class Answer(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.DO_NOTHING, default=None)
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    choice = models.ForeignKey(Choice, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.question.name
