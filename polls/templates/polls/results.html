@@ -1,12 +1,15 @@
 {% extends "polls/base.html" %}
 {% block content %}
 
-<h1>{{ question.question_text }}</h1>
+<h4 class="border-bottom pb-2 mb-0">Question:</h4>
+<h4 class="border-bottom pb-2 mb-0">{{ question.question_text }}</h4>
+<div class="text-start my-3 p-3">
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li class="p-1 pb-1 mb-1">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    </ul>
+    <a class="text-start my-3 p-3" href="/">Vote again?</a>
+</div>
 
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-</ul>
-<a href="/">Vote again?</a>
 {% endblock content %}

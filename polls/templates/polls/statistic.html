@@ -1,0 +1,24 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+<h3 class="border-bottom pb-2 mb-0"> Global Statistic:</h3>
+{% if user.is_authenticated %}
+    <div class="text-start my-3 p-3">
+        {% for question in questions %}
+            <ul class="d-flex pt-3">
+                <li class="border-bottom p-1 pb-1 mb-0">{{ question.question_text }}</li>
+            </ul>
+            <ul>
+                {% for choice in question.choice_set.all %}
+                <li class="p-1 pb-1 mb-1">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+{% else %}
+
+         <div class="position-absolute bottom-50 end-50"></div>
+            <p>If you would like to see global statistic, you will need login or register</p>
+        </div>
+{% endif%}
+{% endblock content %}

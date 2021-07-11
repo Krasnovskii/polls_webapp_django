@@ -36,7 +36,7 @@ class Choice(models.Model):
 
 class Answer(models.Model):
     user = models.IntegerField(default=0)
-    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.DO_NOTHING, default=None)
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):

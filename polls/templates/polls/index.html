@@ -3,10 +3,11 @@
 
 
 {% block content %}
-
+<h3 class="border-bottom pb-2 mb-0">Questions:</h3>
 {% if user.is_authenticated %}
-<div class="my-3 p-3">
-    <h6 class="border-bottom pb-2 mb-0">Questions:</h6>
+
+<div class="text-start my-3 p-3">
+
     {% if start_question_list %}
     <div class="d-flex text-muted pt-3">
 
@@ -14,7 +15,7 @@
             {% for question in start_question_list %}
             <li>
                 <p>
-                    <a class="pb-3 mb-0 text-white small lh-sm border-bottom " href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                    <a class="pb-0 mb-0 text-white medium  lh-sm " href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
                 </p>
             </li>
             {% endfor %}
