@@ -1,0 +1,47 @@
+
+<!doctype html>
+{% load bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Polls</title>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Polls App</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link" href="/statistic">Statistic</a>
+
+        {% if user.is_authenticated %}
+                Hello, {{ user.username }}
+            <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+            <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+<div>
+    {% block content %}
+    {% endblock content %}
+</div>
+
+
+</div>
+
+
+</body>
+
+
+</html>

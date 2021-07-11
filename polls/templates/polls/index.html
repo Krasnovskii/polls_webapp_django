@@ -1,0 +1,36 @@
+{% extends "polls/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="my-3 p-3">
+    <h6 class="border-bottom pb-2 mb-0">Questions:</h6>
+    {% if start_question_list %}
+    <div class="d-flex text-muted pt-3">
+
+        <ul>
+            {% for question in start_question_list %}
+            <li>
+                <p>
+                    <a class="pb-3 mb-0 text-white small lh-sm border-bottom " href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+        <p>No polls are available</p>
+    {% endif%}
+{% else %}
+
+         <div class="position-absolute bottom-50 end-50"></div>
+            <p>If you would like vote on the questions, you will need login or register</p>
+        </div>
+
+{% endif%}
+
+
+ </div>
+{% endblock content %}
